@@ -45,7 +45,7 @@ static JavaVM *getJVM() {
 struct SayHiJob {
     uv_work_t request;
     Persistent<Promise::Resolver> resolver;
-    string result;
+    wstring result;
 };
 
 static void SayHi(const FunctionCallbackInfo<Value> &args) {
@@ -66,7 +66,7 @@ static void SayHi(const FunctionCallbackInfo<Value> &args) {
 
         jobject dougService = env->CallObjectMethod(launcher, getDougService);
         jstring hi = (jstring) env->CallObjectMethod(dougService, sayHi);
-        job->result = env->GetStringUTFChars(hi, NULL);
+        job->result = (wchar_t *) env->GetStringChars(hi, NULL);
         jvm->DetachCurrentThread();
     };
 
@@ -75,7 +75,7 @@ static void SayHi(const FunctionCallbackInfo<Value> &args) {
         HandleScope handleScope(isolate);
 
         auto job = static_cast<SayHiJob *>(req->data);
-        auto result = String::NewFromUtf8(isolate, job->result.c_str());
+        auto result = String::NewFromTwoByte(isolate, (uint16_t *) job->result.c_str());
         auto resolver = Local<Promise::Resolver>::New(isolate, job->resolver);
         resolver->Resolve(isolate->GetCurrentContext(), result);
     
