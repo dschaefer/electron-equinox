@@ -1,0 +1,15 @@
+{
+  "name": "electron-osgi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+  	"start": "rm -fr configuration && electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.6.6"
+  }
+}

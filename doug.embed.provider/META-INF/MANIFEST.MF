@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Provider
+Bundle-SymbolicName: doug.embed.provider
+Bundle-Version: 1.0.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Activator: doug.embed.provider.Activator
+Require-Bundle: org.eclipse.osgi;bundle-version="3.12.0"
+Bundle-Classpath: ./bin
